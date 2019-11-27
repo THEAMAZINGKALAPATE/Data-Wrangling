@@ -1,0 +1,17 @@
+import pandas as pd
+bare1 = {'Student':['Ice Bear','Panda','Grizzly'],'Math':[90,95,79]}
+bare2 = {'Student':['Ice Bear','Panda','Grizzly'],'Electronics':[85,81,83]}
+bare3 = {'Student':['Ice Bear','Panda','Grizzly'],'GEAS':[90,79,93]}
+bare4 = {'Student':['Ice Bear','Panda','Grizzly'],'ESAT':[93,89,88]} 
+bear1 = pd.DataFrame(bare1, columns = ['Student','Math'])
+bear2 = pd.DataFrame(bare2, columns = ['Student','Electronics'])
+bear3 = pd.DataFrame(bare3,columns = ['Student','GEAS'])
+bear4 = pd.DataFrame(bare4, columns = ['Student','ESAT'])
+bb = pd.merge(bear1,bear2,how = 'right')
+bb2 = pd.merge(bb,bear3,how = 'right')
+bb3 = pd.merge(bb2,bear3,how = 'right')
+BEAR = pd.merge(bb2,bear4,how = 'right')
+print(BEAR)
+longBEAR1 = pd.melt(BEAR,id_vars='Student',value_vars = ['Math','Electronics','GEAS','ESAT'])
+longBEAR = longBEAR1.sort_values('Student')
+print(longBEAR)
